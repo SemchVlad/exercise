@@ -25,7 +25,7 @@ public class App
         return list.stream().sorted(Comparator.comparing(p -> p.getFirst())).map(s -> s.getSecond()).collect(Collectors.joining(","));
     }
 
-    public static void handle(Event<Pair<Integer,String>> event, BiConsumer<? super Integer, ? super String> consumer) {
+    public static <A extends Integer, B> void handle(Event<Pair<A,B>> event, BiConsumer<? super A, ? super B> consumer) {
         consumer.accept(event.getData().getFirst(), event.getData().getSecond());
     }
 }

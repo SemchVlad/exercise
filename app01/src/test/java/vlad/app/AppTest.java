@@ -42,17 +42,24 @@ public class AppTest
         Pair<Integer, String> p = new Pair<>(1, "bb");
 
         //  следующие вызовы должны "сходиться" без ошибок
+        System.out.println("execute: App.handle(new Event<>(p), (a, b) -> {});");
         App.handle(new Event<>(p), (a, b) -> {});
+        System.out.println("execute: App.handle(new Event<>(p), (Object a, Object b) -> {});");
         App.handle(new Event<>(p), (Object a, Object b) -> {});
+        System.out.println("execute: App.handle(new Event<>(p), (Object a, String b) -> {});");
         App.handle(new Event<>(p), (Object a, String b) -> {});
+        System.out.println("execute: App.handle(new Event<>(p), (Number a, Object b) -> {});");
         App.handle(new Event<>(p), (Number a, Object b) -> {});
+        System.out.println("execute: App.handle(new Event<>(p), (Integer a, Object b) -> {});");
         App.handle(new Event<>(p), (Integer a, Object b) -> {});
+        System.out.println("execute: App.handle(new Event<>(p), (Integer a, String b) -> {});");
         App.handle(new Event<>(p), (Integer a, String b) -> {});
+        System.out.println("Success.");
 
         Pair<Double, String> p2 = new Pair<>(1.0, "bb");
-        App.handle(new Event<>(p2), (Integer a, String b) -> {});   // здесь должна быть ошибка так как получатель не может обработать Double
+        //App.handle(new Event<>(p2), (Integer a, String b) -> {});   // здесь должна быть ошибка так как получатель не может обработать Double
 
         Pair<Boolean, String> p3 = new Pair<>(true, "bb");
-        App.handle(new Event<>(p3), (a, b) -> {});   // здесь должна быть ошибка так как первый параметр пары имеет нечисловой тип
+       // App.handle(new Event<>(p3), (a, b) -> {});   // здесь должна быть ошибка так как первый параметр пары имеет нечисловой тип
     }
 }
